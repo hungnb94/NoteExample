@@ -1,22 +1,24 @@
-import {ADD_NOTE, EDIT_NOTE} from '../actions/type';
-import {takeEvery, delay} from 'redux-saga/effects';
+import {ADD_NOTE, ADD_NOTE_SAGA, EDIT_NOTE, EDIT_NOTE_SAGA} from '../actions/type';
+import {takeEvery, delay, put} from 'redux-saga/effects';
 
 const TAG = "NoteSagas";
 
-function* addNote() {
-    delay(1000);
-    console.log(TAG, "add note")
+export function* addNote(action) {
+    console.log(TAG, "add note");
+    yield delay(2000);
+    yield put({...action, type: ADD_NOTE});
 }
 
 export function* watchAddNote() {
-    yield takeEvery(ADD_NOTE, addNote)
+    yield takeEvery(ADD_NOTE_SAGA, addNote)
 }
 
-function* editNote() {
-    delay(1000);
-    console.log(TAG, "edit note")
+export function* editNote(action) {
+    console.log(TAG, "edit note");
+    yield delay(2000);
+    yield put({...action, type: EDIT_NOTE});
 }
 
 export function* watchEditNote() {
-    yield takeEvery(EDIT_NOTE, editNote)
+    yield takeEvery(EDIT_NOTE_SAGA, editNote)
 }
