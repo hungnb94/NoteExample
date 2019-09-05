@@ -12,7 +12,7 @@ class NoteDetailComponent extends Component {
         if (note != null) {
             this.state = {
                 id: note.id,
-                text: note.title
+                text: note.name
             }
         } else {
             this.state = {

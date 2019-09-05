@@ -1,4 +1,4 @@
-import {ADD_NOTE_SAGA, EDIT_NOTE_SAGA, DELETE_NOTE_SAGA} from './type';
+import {ADD_NOTE_SAGA, EDIT_NOTE_SAGA, DELETE_POST_REQUEST, FETCH_POSTS_REQUEST} from './type';
 
 export function addNote(note) {
     return {
@@ -14,9 +14,15 @@ export function editNote(note) {
     };
 }
 
-export function deleteNote(note) {
+export function deletePost(note) {
     return {
-        type: DELETE_NOTE_SAGA,
+        type: DELETE_POST_REQUEST,
         data: note,
+    };
+}
+
+export function fetchPosts() {
+    return {
+        type: FETCH_POSTS_REQUEST,
     };
 }

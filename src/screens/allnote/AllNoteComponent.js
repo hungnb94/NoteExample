@@ -6,10 +6,10 @@ const TAG = 'AllNoteComponent';
 class AllNoteComponent extends Component {
 
     _renderItem = ({item}) => (
-        <View key={item.id.toString()}>
+        <View>
             <TouchableOpacity
                 onPress={() => this._clickItem(item)}>
-                <Text style={{flex: 1, fontSize: 25}}>{item.id + '-' + item.title}</Text>
+                <Text style={{flex: 1, fontSize: 25}}>{item.id + '-' + item.name}</Text>
                 <TouchableOpacity
                     onPress={() => this._clickDelete(item)}>
                     <Text>Delete</Text>
@@ -23,13 +23,13 @@ class AllNoteComponent extends Component {
     };
 
     _clickItem(item) {
-        console.log(TAG, 'click item: ' + item.title);
+        console.log(TAG, 'click item: ' + item.name);
         this.props.navigation.navigate('Details', {'data': item});
     }
 
     _clickDelete(item) {
-        console.log(TAG, 'Delete item', item.title);
-        this.props.onDeleteNote(item)
+        console.log(TAG, 'Delete item', item.name);
+        this.props.onDeletePost(item)
     }
 
     render() {
@@ -43,13 +43,18 @@ class AllNoteComponent extends Component {
                     initialNumToRender={5}
                     // windowSize={}
                     // getItemCount={this.props.listData.size}
-                    keyExtractor={(item, index) => item.title + index}
+                    keyExtractor={(item, index) => item.id + index}
                     data={this.props.listData}
                     // getItem={}
                     // updateCellsBatchingPeriod={}
                     renderItem={this._renderItem}/>
             </View>
         );
+    }
+
+    componentDidMount() {
+        console.log(TAG, "componentDidMount");
+        this.props.onFetchPosts()
     }
 }
 

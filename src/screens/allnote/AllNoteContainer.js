@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import AllNoteComponent from './AllNoteComponent';
-import {addNote, deleteNote, editNote} from '../../actions';
+import {addNote, deletePost, editNote, fetchPosts} from '../../actions';
 
 const mapStateToProps = state => {
     console.log('-------->', state.noteReducer.notes);
@@ -12,8 +12,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onDeleteNote: (note) => {
-            dispatch(deleteNote(note))
+        onDeletePost: (note) => {
+            dispatch(deletePost(note))
+        },
+        onFetchPosts: () => {
+            dispatch(fetchPosts())
         }
     }
 };
