@@ -1,15 +1,20 @@
 import React, {Component} from 'react';
-import {View, FlatList, Text, Button, TouchableHighlight} from 'react-native';
+import {View, FlatList, Text, Button, TouchableOpacity} from 'react-native';
 
 const TAG = 'AllNoteComponent';
 
 class AllNoteComponent extends Component {
 
     _renderItem = ({item}) => (
-        <View>
-            <Button key={item.id.toString()}
-                title={item.id + '-' + item.title}
-                onPress={() => this.clickItem(item)}/>
+        <View key={item.id.toString()}>
+            <TouchableOpacity
+                onPress={() => this._clickItem(item)}>
+                <Text style={{flex: 1, fontSize: 25}}>{item.id + '-' + item.title}</Text>
+                <TouchableOpacity
+                    onPress={() => this._clickDelete(item)}>
+                    <Text>Delete</Text>
+                </TouchableOpacity>
+            </TouchableOpacity>
         </View>
     );
 
@@ -17,9 +22,14 @@ class AllNoteComponent extends Component {
         this.props.navigation.navigate('Details');
     };
 
-    clickItem(item) {
-        console.log(TAG, "click item: " + item.title);
+    _clickItem(item) {
+        console.log(TAG, 'click item: ' + item.title);
         this.props.navigation.navigate('Details', {'data': item});
+    }
+
+    _clickDelete(item) {
+        console.log(TAG, 'Delete item', item.title);
+        this.props.onDeleteNote(item)
     }
 
     render() {

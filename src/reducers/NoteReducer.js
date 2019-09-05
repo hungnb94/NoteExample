@@ -1,4 +1,4 @@
-import {ADD_NOTE, EDIT_NOTE} from '../actions/type';
+import {ADD_NOTE, DELETE_NOTE, EDIT_NOTE} from '../actions/type';
 
 const initialState = {
     notes: [
@@ -29,6 +29,12 @@ export default function (state = initialState, action) {
                     note :
                     item
                 )
+            };
+        case DELETE_NOTE:
+            console.log('Delete note');
+            return {
+                ...state,
+                notes: list.filter(item => item.id !== note.id)
             };
         default:
             return state;

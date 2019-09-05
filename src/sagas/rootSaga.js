@@ -1,9 +1,10 @@
-import {all, call} from 'redux-saga/effects';
-import {watchAddNote, watchEditNote} from './noteSagas';
+import {all} from 'redux-saga/effects';
+import {watchAddNote, watchDeleteNote, watchEditNote} from './noteSagas';
 
 export default function* rootSaga() {
     yield all([
-        call(watchAddNote),
-        call(watchEditNote)
+        watchAddNote(),
+        watchEditNote(),
+        watchDeleteNote()
     ])
 }
