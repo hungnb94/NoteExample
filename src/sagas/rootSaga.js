@@ -3,9 +3,9 @@ import {watchAddNote, watchDeleteNote, watchEditNote, watchFetchPost} from './no
 
 export default function* rootSaga() {
     yield all([
-        watchAddNote(),
-        watchEditNote(),
+        watchFetchPost(),
         watchDeleteNote(),
-        watchFetchPost()
+        watchEditNote(),
+        watchAddNote(),
     ])
 }

@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import NoteDetailComponent from './NoteDetailComponent';
-import {addNote, editNote} from '../../actions';
+import {addNote, editPost} from '../../actions';
 
 
 const mapDispatchToProps = dispatch => {
@@ -8,8 +8,8 @@ const mapDispatchToProps = dispatch => {
         onAddNote: (note) => {
             dispatch(addNote(note))
         },
-        onEditNote: (note) => {
-            dispatch(editNote(note))
+        onEditPost: (note) => {
+            dispatch(editPost(note))
         }
     }
 };

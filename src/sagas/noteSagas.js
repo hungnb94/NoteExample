@@ -1,14 +1,18 @@
 import {
+    FETCH_POSTS_REQUEST,
+    FETCH_POSTS_SUCCESS,
+    FETCH_POSTS_FAILED,
+    DELETE_POST_REQUEST,
+    DELETE_POST_SUCCESS,
+    DELETE_POST_FAILED,
+    EDIT_POST_REQUEST,
+    EDIT_POST_SUCCESS,
+    EDIT_POST_FAILED,
     ADD_NOTE,
     ADD_NOTE_SAGA,
-    DELETE_POST_SUCCESS,
-    DELETE_POST_REQUEST,
-    EDIT_NOTE,
-    EDIT_NOTE_SAGA, FETCH_POSTS_FAILED, FETCH_POSTS_REQUEST,
-    FETCH_POSTS_SUCCESS, DELETE_POST_FAILED,
 } from '../actions/type';
 import {takeEvery, delay, put, call} from 'redux-saga/effects';
-import {deletePostApi, fetchPostsApi} from '../apis/noteApi';
+import {fetchPostsApi, deletePostApi, updatePostApi} from '../apis/noteApi';
 
 const TAG = "NoteSagas";
 
@@ -22,14 +26,19 @@ export function* watchAddNote() {
     yield takeEvery(ADD_NOTE_SAGA, addNote)
 }
 
-export function* editNote(action) {
-    console.log(TAG, "edit note");
-    yield delay(3000);
-    yield put({...action, type: EDIT_NOTE});
+export function* editPost(action) {
+    try {
+        yield call(updatePostApi, action.data.id, action.data.name);
+        console.log(TAG, "Update post success");
+        yield put({...action, type: EDIT_POST_SUCCESS})
+    } catch (error) {
+        console.log(TAG, "Update post failed");
+        yield put({...action, type: EDIT_POST_FAILED})
+    }
 }
 
 export function* watchEditNote() {
-    yield takeEvery(EDIT_NOTE_SAGA, editNote)
+    yield takeEvery(EDIT_POST_REQUEST, editPost)
 }
 
 export function* deletePostSaga(action) {

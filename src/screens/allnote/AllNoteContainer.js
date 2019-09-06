@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import AllNoteComponent from './AllNoteComponent';
-import {addNote, deletePost, editNote, fetchPosts} from '../../actions';
+import {deletePost, fetchPosts} from '../../actions';
 
 const mapStateToProps = state => {
     console.log('-------->', state.noteReducer.notes);

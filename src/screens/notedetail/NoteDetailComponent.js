@@ -27,9 +27,9 @@ class NoteDetailComponent extends Component {
         console.log(TAG, "Save title: ", text);
         let id = this.state.id;
         if (id === -1) {
-            this.props.onAddNote({title: text});
+            this.props.onAddNote({name: text});
         } else {
-            this.props.onEditNote({id: id, title: text})
+            this.props.onEditPost({id: id, name: text})
         }
         this.props.navigation.goBack();
     };

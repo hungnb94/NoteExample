@@ -1,4 +1,4 @@
-import {ADD_NOTE_SAGA, EDIT_NOTE_SAGA, DELETE_POST_REQUEST, FETCH_POSTS_REQUEST} from './type';
+import {ADD_NOTE_SAGA, EDIT_POST_REQUEST, DELETE_POST_REQUEST, FETCH_POSTS_REQUEST} from './type';
 
 export function addNote(note) {
     return {
@@ -7,9 +7,9 @@ export function addNote(note) {
     };
 }
 
-export function editNote(note) {
+export function editPost(note) {
     return {
-        type: EDIT_NOTE_SAGA,
+        type: EDIT_POST_REQUEST,
         data: note,
     };
 }
