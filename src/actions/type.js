@@ -1,5 +1,6 @@
-export const ADD_NOTE = 'ADD_NOTE';
-export const ADD_NOTE_SAGA = 'ADD_NOTE_SAGA';
+export const ADD_POST_REQUEST = 'ADD_POST_REQUEST';
+export const ADD_POST_SUCCESS = 'ADD_POST_SUCCESS';
+export const ADD_POST_FAILED = 'ADD_POST_FAILED';
 
 export const EDIT_POST_REQUEST = 'EDIT_POST_REQUEST';
 export const EDIT_POST_SUCCESS = 'EDIT_POST_SUCCESS';

@@ -1,8 +1,8 @@
-import {ADD_NOTE_SAGA, EDIT_POST_REQUEST, DELETE_POST_REQUEST, FETCH_POSTS_REQUEST} from './type';
+import {ADD_POST_REQUEST, EDIT_POST_REQUEST, DELETE_POST_REQUEST, FETCH_POSTS_REQUEST} from './type';
 
-export function addNote(note) {
+export function addPost(note) {
     return {
-        type: ADD_NOTE_SAGA,
+        type: ADD_POST_REQUEST,
         data: note,
     };
 }

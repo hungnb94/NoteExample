@@ -20,3 +20,11 @@ export function updatePostApi(id, name, avatar) {
     return axios.put(BASE_URL + id, data, config)
         .then((data) => data);
 }
+
+export function addPostApi(name) {
+    console.log("Add user", {name});
+    const data = {name};
+    const config = { headers: {'Content-Type': 'application/json'} };
+    return axios.post(BASE_URL, data, config)
+        .then((data) => data);
+}

@@ -8,36 +8,42 @@ import {
     EDIT_POST_REQUEST,
     EDIT_POST_SUCCESS,
     EDIT_POST_FAILED,
-    ADD_NOTE,
-    ADD_NOTE_SAGA,
+    ADD_POST_SUCCESS,
+    ADD_POST_REQUEST,
+    ADD_POST_FAILED
 } from '../actions/type';
-import {takeEvery, delay, put, call} from 'redux-saga/effects';
-import {fetchPostsApi, deletePostApi, updatePostApi} from '../apis/noteApi';
+import {takeEvery, put, call} from 'redux-saga/effects';
+import {fetchPostsApi, deletePostApi, updatePostApi, addPostApi} from '../apis/noteApi';
 
 const TAG = "NoteSagas";
 
-export function* addNote(action) {
-    console.log(TAG, "add note");
-    yield delay(3000);
-    yield put({...action, type: ADD_NOTE});
+export function* addPost(action) {
+    try {
+        const post = yield call(addPostApi, action.data.name);
+        console.log(TAG, "Add post success");
+        yield put({...action, type: ADD_POST_SUCCESS, data: post.data})
+    } catch (error) {
+        console.log(TAG, "Add post failed");
+        yield put({...action, type: ADD_POST_FAILED})
+    }
 }
 
-export function* watchAddNote() {
-    yield takeEvery(ADD_NOTE_SAGA, addNote)
+export function* watchAddPost() {
+    yield takeEvery(ADD_POST_REQUEST, addPost)
 }
 
 export function* editPost(action) {
     try {
-        yield call(updatePostApi, action.data.id, action.data.name);
+        const post = yield call(updatePostApi, action.data.id, action.data.name);
         console.log(TAG, "Update post success");
-        yield put({...action, type: EDIT_POST_SUCCESS})
+        yield put({...action, type: EDIT_POST_SUCCESS, data: post})
     } catch (error) {
         console.log(TAG, "Update post failed");
         yield put({...action, type: EDIT_POST_FAILED})
     }
 }
 
-export function* watchEditNote() {
+export function* watchEditPost() {
     yield takeEvery(EDIT_POST_REQUEST, editPost)
 }
 

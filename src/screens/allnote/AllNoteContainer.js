@@ -4,7 +4,7 @@ import AllNoteComponent from './AllNoteComponent';
 import {deletePost, fetchPosts} from '../../actions';
 
 const mapStateToProps = state => {
-    console.log('-------->', state.noteReducer.notes);
+    console.log('AllNoteContainer', state.noteReducer.notes);
     return {
         listData: state.noteReducer.notes,
     };
